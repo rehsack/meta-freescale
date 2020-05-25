@@ -18,6 +18,11 @@ SRC_URI += "file://0001-fix-fiptool-build-error.patch \
     file://0001-Makefile-add-CC-gcc.patch \
 "
 
+SRC_URI_append_lx2160acex7 = "\
+	file://0001-plat-nxp-Add-lx2160acex7-module-support.patch \
+	file://0002-plat-nxp-lx2160a-auto-boot.patch \
+"
+
 COMPATIBLE_MACHINE = "(qoriq)"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -72,6 +77,7 @@ ddrphyopt_lx2160ardb = "fip_ddr_sec"
 do_configure[noexec] = "1"
 
 do_compile() {
+    set -x
     export LIBPATH="${RECIPE_SYSROOT_NATIVE}"
     install -d ${S}/include/tools_share/openssl
     cp -r ${RECIPE_SYSROOT}/usr/include/openssl/* ${S}/include/tools_share/openssl

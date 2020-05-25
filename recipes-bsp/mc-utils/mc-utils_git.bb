@@ -12,6 +12,10 @@ inherit deploy
 SRC_URI = "git://source.codeaurora.org/external/qoriq/qoriq-components/mc-utils;nobranch=1"
 SRCREV = "8672a5f5abcd3a354dcab07e03f2a8a69b2e962d"
 
+SRC_URI_append_lx2160acex7 = "\
+	file://0001-lx2160acex7-add-8x10G-dual-40G-and-dual-100G-DPL-DPC.patch \
+"
+
 S = "${WORKDIR}/git"
 
 MC_CFG ?= ""
@@ -20,6 +24,7 @@ MC_CFG_ls2088a = "ls2088a"
 MC_CFG_lx2160a = "lx2160a"
 
 MC_FLAVOUR ?= "RDB"
+MC_FLAVOUR_lx2160acex7 = "CEX7"
 
 do_compile () {
 	oe_runmake -C config 
